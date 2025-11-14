@@ -8,84 +8,105 @@ To write a program to implement the Decision Tree Classifier Model for Predictin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-
-1. Import the required libraries.
-
-2. Upload and read the dataset.
-
-3. Check for any null values using the isnull() function.
-
-4. From sklearn.tree import DecisionTreeClassifier and use criterion as entropy.
-
-5. Find the accuracy of the model and predict the required values by importing the required module from sklearn.
+1. Import pandas
+2. Import Decision tree classifier
+3. Fit the data in the model
+4. Find the accuracy score
 
 ## Program:
 ```
 /*
 Program to implement the Decision Tree Classifier Model for Predicting Employee Churn.
-Developed by: MOHAMED RIDWAN A
-RegisterNumber:  212223110030
+Developed by: KABELAN G K
+RegisterNumber: 24900985
 */
 ```
-```python
+```
 import pandas as pd
 data=pd.read_csv("Employee.csv")
+print("data.head():")
 data.head()
-
+```
+```
+print("data.info():")
 data.info()
-
+```
+```
+print("isnull() and sum():")
 data.isnull().sum()
-
-data['left'].value_counts()
-
+```
+```
+print("data value counts():")
+data["left"].value_counts()
+```
+```
 from sklearn.preprocessing import LabelEncoder
 le=LabelEncoder()
-data['salary']=le.fit_transform(data['salary'])
+```
+```
+print("data.head() for Salary:")
+data["salary"]=le.fit_transform(data["salary"])
 data.head()
-
-x=data[['satisfaction_level','last_evaluation','number_project','average_montly_hours','time_spend_company','Work_accident','promotion_last_5years','salary']]
+```
+```
+print("x.head():")
+x=data[["satisfaction_level","last_evaluation","number_project","average_montly_hours","time_spend_company","Work_accident","promotion_last_5years","salary"]]
 x.head()
-
-y=data['left']
-
+```
+```
+y=data["left"]
 from sklearn.model_selection import train_test_split
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=100)
 from sklearn.tree import DecisionTreeClassifier
-dt=DecisionTreeClassifier(criterion='entropy')
+dt=DecisionTreeClassifier(criterion="entropy")
 dt.fit(x_train,y_train)
-y_predict=dt.predict(x_test)
-
+y_pred=dt.predict(x_test)
+```
+```
+print("Accuracy value:")
 from sklearn import metrics
-accuracy=metrics.accuracy_score(y_test,y_predict)
+accuracy=metrics.accuracy_score(y_test,y_pred)
 accuracy
-
-dt.predict([[0.5,0.8,9,206,6,0,1,2]])
+```
+```
+print("Data Prediction:")
+dt.predict([[0.5,0.8,9,260,6,0,1,2]])
 ```
 
+```
+from sklearn.tree import plot_tree
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8,6))
+plot_tree(dt, feature_names=x.columns, class_names=['salary', 'left'], filled=True)
+plt.show()
+
+```
 ## Output:
-### Data Head:
-![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/145972122/d5cb75c8-1a61-40b1-9f55-9dd6e2f28fe9)
+![image](https://github.com/user-attachments/assets/0a4fa5db-4d79-4ebd-9926-f4d1ee83d1e3)
 
-### Dataset info :
-![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/145972122/909d5c90-e8fc-4e80-a696-180be9736872)
+![image](https://github.com/user-attachments/assets/ea8d6d09-3cc4-4875-ade1-46c9aa59e5c0)
 
-### Null Dataset:
-![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/145972122/955a342a-5f5c-4b9e-b092-08c418ca2f04)
+![image](https://github.com/user-attachments/assets/9b850bb3-7c7e-4775-b2e3-789789375431)
 
-### Values count in left column:
-![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/145972122/1e5df3da-26d0-4310-b3c4-7ef739eb55c3)
+![image](https://github.com/user-attachments/assets/7b31af4d-1ce9-4ff7-b45c-938ce231cb83)
 
-### Dataset transformed head:
-![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/145972122/c5309dd8-61d5-4bbc-9339-ce580509b787)
+![image](https://github.com/user-attachments/assets/71654c7d-2c86-4613-8d03-a010cb8a2b11)
 
-### x.head:
-![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/145972122/f10c925a-3ac2-44ef-a6ec-1e15da68f1d8)
-### Accuracy:
+![image](https://github.com/user-attachments/assets/5442db03-d63b-404e-ab1f-d9552a1a6a83)
 
-![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/145972122/723a87ad-58a9-4512-90d1-31cddd146a48)
+![image](https://github.com/user-attachments/assets/727ed6aa-319b-4a29-8147-e094729d5549)
 
-### Data prediction:
-![image](https://github.com/HIRU-VIRU/Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn/assets/145972122/c51ce862-b453-4847-abcc-cfb56674ed3d)
+![image](https://github.com/user-attachments/assets/0e78318f-49be-400e-8e9d-3d4360dc9cc3)
+
+![image](https://github.com/user-attachments/assets/4d27bab8-fef9-46a9-869c-23296ad3caac)
+
+
+
+
+
+
+
 
 
 ## Result:
